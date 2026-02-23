@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  db:
+    image: postgres:latest
+    container_name: snsapp-postgres-3
+    restart: always
+    ports:
+      - "5432:5432"  
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      PGDATA: "/pgdata"
+    volumes:
+      - ./data3:/pgdata 
