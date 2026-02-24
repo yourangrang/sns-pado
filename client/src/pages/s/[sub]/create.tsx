@@ -68,7 +68,7 @@ const PostCreate = () => {
         }
     }
     return (
-        <div className='w-4/6 mt-20 mx-auto'>
+        <div className='w-4/6 mt-20 mx-auto h-screen'>
 
                 <div className='p-4 mx-auto mt-40 bg-white rounded-2xl w-5/6 md:w-4/6'>
                     <h1 className='mb-3 text-lg'>포스트 생성하기</h1>

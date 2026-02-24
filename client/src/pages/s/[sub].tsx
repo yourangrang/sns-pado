@@ -135,7 +135,7 @@ const SubPage = () => {
     return (
         <>
             {subData &&
-                    <div className='mt-18'>
+                    <div className='mt-18 h-screen'>
                         <input type="file" hidden={true} ref={fileInputRef} onChange={uploadImage} />
                         {/* 배너 이미지 */}
                         <div className="bg-gray-400 ">
@@ -158,7 +158,7 @@ const SubPage = () => {
                             )}
                         </div>
                         {/* 커뮤니티 메타 데이터 */}
-                        <div className='h-20 bg-white'>
+                        <div className='h-20 bg-white   '>
                             <div className='relative flex max-w-6xl px-5 mx-auto'>
                                 <div className='absolute' style={{ top: -50 }}>
                                     {subData.imageUrl && (
@@ -172,12 +172,12 @@ const SubPage = () => {
                                         </div>
                                     )}
                                 </div>
-                                <div className='relative pt-2 ml-28'>
+                                <div className='mt-2 ml-28'>
                                     <div className='flex items-center'>
-                                        <h1 className='text-3xl font-bold '>{subData.title}</h1>
+                                        <h1 className='text-3xl font-bold '>{subData.name}</h1>
                                     </div>
-                                    <p className='font-bold text-gray-400 text-small'>
-                                        /s/{subData.name}
+                                    <p className='font-bold text-gray-400 text-small mt-[2px]'>
+                                        {subData.title}
                                     </p>
                                 </div>
                             </div>

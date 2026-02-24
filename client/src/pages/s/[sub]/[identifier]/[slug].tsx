@@ -70,8 +70,8 @@ const PostPage = () => {
          
 
     return (
-        <div>
-                <div className="max-md:w-5/6 mt-20 mb-20 mx-auto w-4/6 bg-white rounded-3xl p-4 ">
+        <div className="h-screen">
+                <div className="max-md:w-5/6 mt-20 mb-20 mx-auto w-4/6 bg-white rounded-3xl p-4">
                     {post && (
                         <>
                             <div className="flex">

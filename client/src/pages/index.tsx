@@ -68,6 +68,7 @@ const HomeInner = () => {
   //  저장한 게시물 
 
   const { data: savedPosts, mutate: mutateSaved } = useSWR<Post[]>('/saved')
+  console.log("savedPosts", savedPosts);  
 
   //  북마크 클릭 
 
@@ -166,14 +167,14 @@ const HomeInner = () => {
 
                   <Link
                     href={post.url}
-                    className="flex justify-between ml-4 w-full text-sm font-md "
+                    className="ml-1 text-sm  truncate flex-1 font-light"
                   >
-                    {post.slug}
+                    {post.title}
 
                   </Link>
                   <button
                     onClick={() => handleClick(post)}
-                    className="text-blue-500 flex items-center gap-1"
+                    className="text-blue-500 flex items-center gap-1 "
                   >
                     {!clickedPosts[post.identifier] && (
                       <IoClose className='w-5 h-5  fill-gray-500 hover:bg-blue-100 rounded-full'/>
