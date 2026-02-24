@@ -15,8 +15,8 @@ export default class Post extends EntityBase {
     @Column()
     identifier: string;
 
-    // @Column()
-    // title: string;
+    @Column({ nullable: true })
+    title: string;
 
     @Index()
     @Column()
@@ -113,8 +113,8 @@ export default class Post extends EntityBase {
     @BeforeInsert()
     makeIdAndSlug() {
         this.identifier = makeId(7);
-         if (this.body) {
-        this.slug = slugify(this.body.slice(0, 2)); // body 첫 20글자로 slug 생성
+         if (this.title) {
+        this.slug = slugify(this.title.slice(0, 20)); // title 첫 20글자로 slug 생성
         } else {
             this.slug = makeId(10); 
         }

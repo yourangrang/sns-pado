@@ -136,7 +136,7 @@ const UserPage = () => {
                                                 href={`/u/${comment.post?.subName}`}
                                                 className=" ml-1 bg-gray border-2 border-gray-200 px-[4px] rounded-full hover:border-blue-300 hover:bg-blue-300"
                                             >
-                                                {comment.post?.subName}
+                                                #{comment.post?.subName}
                                             </Link>
                                             <span className='flex-1 flex justify-end mr-2 '>{dayjs(comment.createdAt).fromNow()}</span>
                                         </p>

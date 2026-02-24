@@ -46,10 +46,10 @@ const PostCreate = () => {
 
     const submitPost = async (e: FormEvent) => {
         e.preventDefault();
-        if (body.trim() === "" || !subName) return;
+        if (title.trim() === "" || body.trim() === "" || !subName) return;
 
         const formData = new FormData();
-        // formData.append("title", title.trim());
+        formData.append("title", title.trim());
         formData.append("body", body);
         formData.append("sub", subName as string);
 
@@ -73,7 +73,7 @@ const PostCreate = () => {
                 <div className='p-4 mx-auto mt-40 bg-white rounded-2xl w-5/6 md:w-4/6'>
                     <h1 className='mb-3 text-lg'>포스트 생성하기</h1>
                     <form onSubmit={submitPost}>
-                        {/* <div className='relative mb-2'>
+                        <div className='relative mb-2'>
                             <input
                                 type="text"
                                 className="w-full px-3 py-2 border-2 border-gray-300 rounded focus:outline-none focus:border-blue-500"
@@ -88,7 +88,7 @@ const PostCreate = () => {
                             >
                                 {title.trim().length}/20
                             </div>
-                        </div> */}
+                        </div>
                         <textarea
                             rows={4}
                             placeholder="설명"

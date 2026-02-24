@@ -20,10 +20,7 @@ const mapError = (errors: Object[]) =>
 router.get("/me", userMiddleware, authMiddleware, async (req: Request, res: Response) => {
    const user: User = res.locals.user;
 
-    return res.json({
-      ...user,
-      imageUrl: user.imageUrl, // getter 수동 포함
-    });
+    return res.json(user);
   }
 );
 

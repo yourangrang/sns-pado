@@ -40,6 +40,7 @@ const PostCard = ({
         identifier,
         slug,
         body,
+        title,
         subName,
         createdAt,
         commentCount,
@@ -195,8 +196,8 @@ const PostCard = ({
                                         <Link
                                             href={`/u/${username}`}
                                             className=" mr-1 text-sm font-bold cursor-pointer hover:underline"
-                                            >
-                                        @{username}
+                                        >
+                                            @{username}
                                         </Link>
                                         <Link
                                             href={url}
@@ -216,18 +217,17 @@ const PostCard = ({
                                     </Link>
                                 </div>
                             </div>
-                                
-
-                        {body && <p className="mt-4 mb-1 text-md">{body}</p>}
+                        <h2 className='text-lg font-semibold my-1'>{title}</h2>
+                        {body && <p className="my-2 text-md">{body}</p>}
                         
                         {imageUrls && imageUrls.length > 0 && (
-                            <div className=" ">
+                            <div className="mt-[-4px] mb-2">
                                 <PostImages imageUrls={imageUrls} />
                             </div>
                         )}
 
                         {/* 아이콘 */}
-                        <div className="flex font-semibold text-md mt-3  ">
+                        <div className="flex font-semibold text-md ">
                             <div className="flex items-center ">
                                 <button
                                     onClick={likePost}

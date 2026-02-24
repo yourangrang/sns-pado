@@ -213,8 +213,9 @@ const getRandomPost = async (req: Request, res: Response) => {
   //  게시물 생성 (이미지 업로드 포함)
 
 const createPost = async (req: Request, res: Response) => {
-        const { body, sub } = req.body;
+        const { title, body, sub } = req.body;
 
+        if (!title?.trim()) return res.status(400).json({ title: "제목은 필수입니다." });
         if (!body?.trim()) return res.status(400).json({ body: "내용은 필수입니다." });
 
         try {
@@ -225,7 +226,7 @@ const createPost = async (req: Request, res: Response) => {
               ? (req.files as Express.Multer.File[]).map(f => f.filename)
               : [];
             const post = postRepo.create({
-                // title,
+                title,
                 body,
                 user: res.locals.user,
                 sub: subRecord,
@@ -309,7 +310,7 @@ const searchPosts = async (req: Request, res: Response) => {
   try {
     const posts = await postRepo.find({
       where: [
-        // { title: ILike(`%${q}%`) },
+        { title: ILike(`%${q}%`) },
         { body: ILike(`%${q}%`) },
       ],
       relations: [

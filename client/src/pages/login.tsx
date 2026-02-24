@@ -79,7 +79,7 @@ const Login = () => {
                     </small>
                     <button 
                         type="button"
-                        className='w-full py-3 mt-4 text-white bg-gray-500 rounded-xl'
+                        className='w-full py-3 mt-4 text-white bg-gray-500 rounded-xl hover:bg-gray-400'
                         onClick={handleGuestLogin}
                     >
                         게스트로 로그인하기

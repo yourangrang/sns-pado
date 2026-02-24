@@ -27,6 +27,7 @@ export interface Sub {
 export interface Post {
   identifier: string;
   slug: string;
+  title: string;
   body: string;
   subName: string;
   username: string;
