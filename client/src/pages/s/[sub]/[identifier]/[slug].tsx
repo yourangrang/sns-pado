@@ -70,8 +70,8 @@ const PostPage = () => {
          
 
     return (
-        <div className="h-screen">
-                <div className="max-md:w-5/6 mt-20 mb-20 mx-auto w-4/6 bg-white rounded-3xl p-4">
+        <div className=" min-h-screen ">
+                <div className="max-md:w-5/6 mt-20 mb-20  mx-auto w-4/6 bg-white rounded-3xl p-4">
                     {post && (
                         <>
                             <div className="flex">
@@ -121,7 +121,7 @@ const PostPage = () => {
                                         </div>
                                             
                                     <h2 className='text-lg font-semibold my-1'>{post.title}</h2>
-                                    {post.body && <p className="mt-2 mb-1 text-md">{post.body}</p>}
+                                    {post.body && <p className="mt-2 mb-1 text-md whitespace-pre-wrap break-words">{post.body}</p>}
                                     
                                     {post.imageUrls && post.imageUrls.length > 0 && (
                                         <div className=" ">

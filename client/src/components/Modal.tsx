@@ -57,7 +57,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, onWave  }) => 
   return (
     <div
       onClick={onClose}
-      className="fixed inset-0 z-50 flex items-center justify-center"
+      className="fixed inset-0 z-50 flex items-center justify-center "
     >
       {/* 배경 */}
       <div className="absolute inset-0 bg-black bg-opacity-80" />
@@ -127,7 +127,7 @@ const Modal: React.FC<ModalProps> = ({ isOpen, onClose, children, onWave  }) => 
 
       {/*  모달 */}
       <div
-        className={`px-4 absolute mb-40  rounded-lg  max-w-xl w-full 
+        className={`px-4 absolute mb-40  rounded-lg  max-w-xl w-full
           transition-all duration-1000 ease-[cubic-bezier(0.25,2,0.5,1)]
           ${show ? "translate-y-0 opacity-100" : "translate-y-80 opacity-0"}`}
       >

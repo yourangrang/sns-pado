@@ -9,6 +9,7 @@ import PostImages from './PostImages'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/ko'
 import { IoClose } from "react-icons/io5";
+import { useEffect, useRef, useState } from 'react'
 
 dayjs.extend(relativeTime)
 dayjs.locale('ko')
@@ -64,6 +65,22 @@ const PostCard = ({
     const { authenticated } = useAuthState();
     const { user } = useAuthState(); 
     const subUrl = router.query.sub === subName 
+    const contentRef = useRef<HTMLParagraphElement>(null);
+
+    const [expanded, setExpanded] = useState(false);
+    const [showButton, setShowButton] = useState(false);
+
+    useEffect(() => {
+        if (contentRef.current) {
+        const lineHeight = parseFloat(
+            getComputedStyle(contentRef.current).lineHeight
+        );
+        const maxHeight = lineHeight * 7; // 7줄 기준
+        if (contentRef.current.scrollHeight > maxHeight) {
+            setShowButton(true);
+        }
+        }
+    }, [body]);
 
     const savePost = async (e: React.MouseEvent) => {
         e.preventDefault();
@@ -218,8 +235,50 @@ const PostCard = ({
                                 </div>
                             </div>
                         <h2 className='text-lg font-semibold my-1'>{title}</h2>
-                        {body && <p className="my-2 text-md">{body}</p>}
+                        {/* {body && 
+                            <p className="my-2 text-md whitespace-pre-wrap break-words" 
+                                style={{
+                                    display: '-webkit-box',
+                                    WebkitLineClamp: 7,
+                                    WebkitBoxOrient: 'vertical',
+                                    overflow: 'hidden',
+                                }}
+                            >
+                            {body}
+                            </p>
+                        } */}
                         
+                        <p
+                            ref={contentRef}
+                            className="my-2 text-md whitespace-pre-wrap break-words"
+                            style={
+                                expanded
+                                ? {}
+                                : {
+                                    display: "-webkit-box",
+                                    WebkitLineClamp: 7,
+                                    WebkitBoxOrient: "vertical",
+                                    overflow: "hidden",
+                                    }
+                            }
+                        >
+                            {body}
+                        </p>
+
+                        {showButton && (
+                        <button
+                            onClick={(e) => {
+                            e.preventDefault();   // Link 기본 이동 막기
+                            e.stopPropagation(); // 부모 Link 클릭 막기
+                            setExpanded(!expanded);
+                            }}
+                            className="text-blue-500 text-sm font-medium"
+                        >
+                            {expanded ? "접기" : "더보기"}
+                        </button>
+                        )}
+
+                        {/* 게시물이미지 */}
                         {imageUrls && imageUrls.length > 0 && (
                             <div className="mt-[-4px] mb-2">
                                 <PostImages imageUrls={imageUrls} />

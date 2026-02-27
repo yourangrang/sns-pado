@@ -135,7 +135,7 @@ const SubPage = () => {
     return (
         <>
             {subData &&
-                    <div className='mt-18 h-screen'>
+                    <div className='mt-18 '>
                         <input type="file" hidden={true} ref={fileInputRef} onChange={uploadImage} />
                         {/* 배너 이미지 */}
                         <div className="bg-gray-400 ">

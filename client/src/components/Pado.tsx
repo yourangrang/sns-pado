@@ -31,10 +31,10 @@ const Pado = ({activeClass}:props) => {
   const closeModal = () => setIsOpen(false);
 
   return (
-    <div className="hover:text-blue-600">
+    <div>
       <button
         className={`flex py-4 px-3 w-full items-center font-bold rounded-xl
-           ${!isOpen  && 'hover:bg-blue-300 hover:bg-opacity-10 hover:translate-x-1 hover:text-blue-500 transition-all ease'}
+           ${!isOpen  && 'hover:bg-blue-300 hover:bg-opacity-10 hover:text-blue-600 hover:translate-x-1 transition-all ease'}
           ${isOpen ? activeClass('modal') : ''}`}
         onClick={fetch}
       >
