@@ -341,19 +341,19 @@ const PostCard = ({
                         <div>
                             {recentComments.map((c, i) => (
                                 <div key={c.identifier} className="flex-wrap text-sm  ">
-                                    <div className='flex'>
-                                        <div className='w-[48px] '>
+                                    <div className='flex justify-between  '>
+                                        <div className='w-[50px] '>
                                             <img 
                                                 src={c.userInfo.imageUrl}
                                                 alt={c.userInfo.username}
-                                                className='mx-auto  w-7 h-7 border-[3.5px] bg-gray-300 border-gray-300 rounded-full' 
+                                                className='mx-auto w-7 h-7 border-[3.5px] bg-gray-300 border-gray-300 rounded-full' 
                                             />
                                         </div>
-                                        <span className='mt-[4px] ml-3 '>{c.body}</span>
+                                        <div className='w-full mt-[4px] ml-3 line-clamp-1'>{c.body}</div>
                                     </div>
-                                    <div className='w-[48px]'>
+                                    <div className='w-[45.6px]'>
                                         {i !== recentComments.length - 1 && (
-                                            <div className=' w-1  mx-auto bg-gray-200 my-[2px] rounded-md h-2'></div>
+                                            <div className=' w-1  my-1 mx-auto bg-gray-200  rounded-md h-2'></div>
                                         )}
                                     </div>
                                 </div>

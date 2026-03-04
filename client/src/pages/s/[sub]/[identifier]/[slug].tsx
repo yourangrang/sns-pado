@@ -229,16 +229,16 @@ const PostPage = () => {
                                 <div className=' mx-auto  '>
                                     <div className="">
                                     {comments.map((c, i) => (
-                                        <div key={c.identifier} className="flex-col text-sm bg-gray-100 rounded-xl py-4  my-2">
-                                            <div className='flex'>
-                                                <div className='w-[48px] '>
+                                        <div key={c.identifier} className="flex-col text-sm bg-gray-100 rounded-xl p-3 my-2">
+                                            <div className='flex justify-between '>
+                                                <div className='w-[46px]'>
                                                     <img 
                                                         src={c.userInfo.imageUrl}
                                                         alt={c.userInfo.username}
-                                                        className='mx-auto  w-8 h-8 border-[3.5px] border-gray-300 rounded-full  bg-gray-300 ' 
+                                                        className=' w-8 h-8 border-[3.5px] border-gray-300 rounded-full  bg-gray-300 ' 
                                                     />
                                                 </div>
-                                                <div className="flex-col text-xs">
+                                                <div className="w-full flex-col text-md  ">
                                                     <Link
                                                         href={`/u/${c.username}`}
                                                         className=" mr-1 font-bold cursor-pointer hover:underline"
@@ -248,7 +248,7 @@ const PostPage = () => {
                                                     <span className='mx-1 hover:underline  text-gray-400'>
                                                         {dayjs(c.createdAt).fromNow()}
                                                     </span>    
-                                                    <p className="mt-1">{c.body}</p>
+                                                    <p className="mt-1 ">{c.body}</p>
                                                 </div>
                                             </div>
                                             <div className=''>
