@@ -5,7 +5,7 @@ import Link from 'next/link';
 
 export default function SubList() {
 
-  const address = `/subs/sub/topSubs`;
+  const address = `/subs/topSubs`;
   const { data: topSubs } = useSWR<Sub[]>(address);
   
   console.log('topSubs', topSubs);
@@ -13,9 +13,11 @@ export default function SubList() {
 
   return (
       <div className='mb-4  rounded-xl p-2  border-blue-200 flex-wrap justify-center shadow-[0_4px_20px_rgba(0,0,0,0.2),inset_2px_2px_2px_rgba(255,255,255,0.9)]  hover:shadow-[0_4px_20px_rgba(0,0,0,0.4),inset_2px_2px_2px_rgba(255,255,255,0.9)]  bg-gradient-to-br from-blue-500/20 to-blue-200/10  transition-all duration-[600ms] ease-in-out  '>
-        <div className='px-4 pb-3 py-1'>
-          <p className='text-md font-semibold text-center'>지금 인기 커뮤니티 보러가기</p>
-        </div>
+        <Link href="/s/subList"> 
+          <div className='px-4 pb-3 py-1'>
+            <p className='text-md font-semibold text-center'>지금 인기 커뮤니티 보러가기</p>
+          </div>
+        </Link>
 
         {/* 커뮤니티 리스트 */}
         <div>

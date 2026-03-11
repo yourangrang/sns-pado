@@ -158,6 +158,37 @@ const topSubs = async (_: Request, res: Response) => {
   }
 };
 
+
+// All Subs
+const allSubs = async (_: Request, res: Response) => {
+  try {
+    const imageUrlExp = `
+      COALESCE(
+        '${process.env.APP_URL}/images/' || s."imageUrn",
+        'https://www.gravatar.com/avatar?d=mp&f=y'
+      )
+    `;
+
+    const subs = await subRepo
+      .createQueryBuilder("s")
+      .select(`
+        s.title,
+        s.name,
+        ${imageUrlExp} AS "imageUrl",
+        COUNT(p.id) AS "postCount"
+      `)
+      .leftJoin(Post, "p", `s.name = p."subName"`)
+      .groupBy(`s.title, s.name, "imageUrl"`)
+      .orderBy(`"postCount"`, "DESC")
+      .getRawMany();
+
+    return res.json(subs);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).json({ error: "문제가 발생했습니다." });
+  }
+};
+
   //  Own Sub Middleware
 const ownSub = async (req: Request, res: Response, next: NextFunction) => {
   try {
@@ -234,7 +265,8 @@ const uploadSubImage = async (req: Request, res: Response) => {
   //  Router
 const router = Router();
 
-router.get("/sub/topSubs", topSubs);
+router.get("/topSubs", topSubs);
+router.get("/allSubs", allSubs);
 router.get("/:name", userMiddleware, getSub);
 router.post("/", userMiddleware, authMiddleware, createSub);
 router.post(

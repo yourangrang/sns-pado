@@ -9,6 +9,7 @@ import Pado from './Pado'
 import { MdKeyboardArrowRight } from 'react-icons/md'
 import { MdOutbound } from "react-icons/md";
 import axios from 'axios'
+import { PiListMagnifyingGlassBold } from "react-icons/pi";
 
 interface Props {
   closeSidebar: ()=>void;
@@ -82,6 +83,16 @@ export default function LeftSideBar({ closeSidebar }:Props) {
               <span className='ml-7 max-lg:hidden  max-md:block max-md:ml-4'>저장한 게시물</span>
                {isActive('/saved') &&<MdKeyboardArrowRight  className='w-5 h-5 '/>}
             </Link>
+            <Link href="/s/subList"
+                  onClick={closeSidebar}
+                   className={`flex py-4 px-3  rounded-xl items-center font-bold mb-1
+                    ${!isActive('/s/subList') && 'hover:bg-blue-300 hover:bg-opacity-10 hover:translate-x-1 hover:text-blue-600 transition-all ease'}
+                    ${activeClass('/s/subList')}`}
+            >
+              <PiListMagnifyingGlassBold className='w-6 h-6  max-md:w-[20px] max-md:h-[20px]'/>
+              <span className='ml-7 max-lg:hidden  max-md:block max-md:ml-4'>커뮤니티 리스트</span>
+               {isActive('/saved') &&<MdKeyboardArrowRight  className='w-5 h-5 '/>}
+            </Link>
             <QuoteBox activeClass={activeClass} />
             <div className='flex '>
               <button 
@@ -93,7 +104,7 @@ export default function LeftSideBar({ closeSidebar }:Props) {
             </div>
 
             
-           <div className="flex ml-2 mt-56">
+           <div className="flex ml-2 mt-40">
                 {!loading && (
                     authenticated &&
                         <button
