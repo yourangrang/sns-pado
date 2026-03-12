@@ -75,7 +75,7 @@ const PostCard = ({
         const lineHeight = parseFloat(
             getComputedStyle(contentRef.current).lineHeight
         );
-        const maxHeight = lineHeight * 7; // 7줄 기준
+        const maxHeight = lineHeight * 2; // 2줄 기준
         if (contentRef.current.scrollHeight > maxHeight) {
             setShowButton(true);
         }
@@ -256,7 +256,7 @@ const PostCard = ({
                                 ? {}
                                 : {
                                     display: "-webkit-box",
-                                    WebkitLineClamp: 7,
+                                    WebkitLineClamp: 2,
                                     WebkitBoxOrient: "vertical",
                                     overflow: "hidden",
                                     }
@@ -280,7 +280,7 @@ const PostCard = ({
 
                         {/* 게시물이미지 */}
                         {imageUrls && imageUrls.length > 0 && (
-                            <div className="mt-[-4px] mb-2">
+                            <div className="mt-2 mb-2">
                                 <PostImages imageUrls={imageUrls} />
                             </div>
                         )}
