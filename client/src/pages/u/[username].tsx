@@ -7,7 +7,7 @@ import useSWR from 'swr';
 import PostCard from '../../components/PostCard';
 import { Comment, Post } from '../../types';
 import axios from 'axios';
-import { useAuthState } from '../../context/auth';
+import { useAuthDispatch, useAuthState } from '../../context/auth';
 
 const UserPage = () => {
     const [ownUser, setOwnUser] = useState(false);
@@ -17,6 +17,7 @@ const UserPage = () => {
     const username = router.query.username;
 
     const { authenticated, user } = useAuthState();
+    const authDispatch = useAuthDispatch();
     const fileInputRef = useRef<HTMLInputElement>(null);
 
     const { data, error, mutate: usermutate } = useSWR(
@@ -46,6 +47,8 @@ const UserPage = () => {
                 { headers: { 'Content-Type': 'multipart/form-data' } }
             );
             usermutate();
+            const res = await axios.get("/auth/me");
+            authDispatch("LOGIN", res.data);
         } catch (error) {
             console.log(error);
         }
