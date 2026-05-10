@@ -19,10 +19,7 @@ export default function LeftSideBar({ closeSidebar }:Props) {
     const router = useRouter();
     const { loading, authenticated } = useAuthState();
     const currentpage  = router.pathname;
-
-
     const dispatch = useAuthDispatch();
-    
 
     const handleLogout = () => {
         axios.post("/auth/logout")
@@ -35,13 +32,17 @@ export default function LeftSideBar({ closeSidebar }:Props) {
             })
     }
 
-    const isActive = (path: string) =>
-    currentpage === path || path === 'modal' ;
+    const isActive = (path: string) => {
+      return currentpage === path || path === "modal";
+    };
 
-   const activeClass = (path: string) =>
-   isActive(path) ? ' rounded-xl ml-1 text-blue-600 shadow-[0_4px_20px_rgba(59,130,246,0.3),inset_2px_2px_2px_rgba(255,255,255,0.9)]  bg-gradient-to-br from-blue-500/20 to-blue-500/10 opacity-1 transition-all duration-[400ms] ease-in-out ' : 'text-black';
-    
-
+    const activeClass = (path: string) => {
+      if (isActive(path)) {
+        return 'rounded-xl ml-1 text-blue-600 shadow-[0_4px_20px_rgba(59,130,246,0.3),inset_2px_2px_2px_rgba(255,255,255,0.9)] bg-gradient-to-br from-blue-500/20 to-blue-500/10 opacity-1 transition-all duration-[400ms] ease-in-out flex items-center';
+      } else {
+        return 'text-black hover:bg-blue-300 hover:bg-opacity-10 hover:translate-x-1 hover:text-blue-600 transition-all ease flex items-center';
+      }
+    };
 
     const handleclick2 = (e: React.MouseEvent<HTMLButtonElement>) => {
       if(!authenticated){
@@ -61,37 +62,31 @@ export default function LeftSideBar({ closeSidebar }:Props) {
               className='w-[100px] h-[28px] mx-auto my-6  '
             />
           </Link>
-          <div className='flex flex-col gap-1 mt-10 max-lg:items-center max-md:items-start max-md:w-46 mx-auto max-md:text-sm  '>
+          <div className='flex flex-col gap-1 mt-10 max-lg:items-center max-md:items-start max-md:w-46 mx-auto max-md:text-sm'>
               <Pado activeClass={activeClass} />
             <Link href="/p"
                   onClick={closeSidebar}
-                  className={` flex py-4 px-3 rounded-xl items-center font-bold mb-1
-                    ${!isActive('/p') && 'hover:bg-blue-300 hover:bg-opacity-10 hover:translate-x-1 hover:text-blue-600 transition-all ease'}
-                    ${activeClass('/p')}`}
+                  className={` flex py-4 px-3 rounded-xl items-center font-bold mb-1 ${activeClass('/p')}`}
             >
               <FaHotjar className='w-6 h-6 max-md:w-[20px] max-md:h-[20px] '/>
               <span className='ml-7 max-lg:hidden  max-md:block max-md:ml-4 '>인기 게시물</span>
-              {isActive('/p') &&<MdKeyboardArrowRight  className='w-5 h-5 '/>}
+              {isActive('/p') && <MdKeyboardArrowRight  className='w-5 h-5 ml-auto'/>}
             </Link>
             <Link href="/saved"
                   onClick={closeSidebar}
-                   className={`flex py-4 px-3  rounded-xl items-center font-bold mb-1
-                    ${!isActive('/saved') && 'hover:bg-blue-300 hover:bg-opacity-10 hover:translate-x-1 hover:text-blue-600 transition-all ease'}
-                    ${activeClass('/saved')}`}
+                  className={`flex py-4 px-3  rounded-xl items-center font-bold mb-1 ${activeClass('/saved')}`}
             >
               <LuBookmark className='w-6 h-6  max-md:w-[20px] max-md:h-[20px]'/>
               <span className='ml-7 max-lg:hidden  max-md:block max-md:ml-4'>저장한 게시물</span>
-               {isActive('/saved') &&<MdKeyboardArrowRight  className='w-5 h-5 '/>}
+               {isActive('/saved') && <MdKeyboardArrowRight  className='w-5 h-5 ml-auto'/>}
             </Link>
             <Link href="/s/subList"
                   onClick={closeSidebar}
-                   className={`flex py-4 px-3  rounded-xl items-center font-bold mb-1
-                    ${!isActive('/s/subList') && 'hover:bg-blue-300 hover:bg-opacity-10 hover:translate-x-1 hover:text-blue-600 transition-all ease'}
-                    ${activeClass('/s/subList')}`}
+                  className={`flex py-4 px-3  rounded-xl items-center font-bold mb-1 ${activeClass('/s/subList')}`}
             >
               <PiListMagnifyingGlassBold className='w-6 h-6  max-md:w-[20px] max-md:h-[20px]'/>
               <span className='ml-7 max-lg:hidden  max-md:block max-md:ml-4'>커뮤니티 리스트</span>
-               {isActive('/saved') &&<MdKeyboardArrowRight  className='w-5 h-5 '/>}
+               {isActive('/s/subList') && <MdKeyboardArrowRight  className='w-5 h-5 ml-auto'/>}
             </Link>
             <QuoteBox activeClass={activeClass} />
             <div className='flex '>

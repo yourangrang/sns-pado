@@ -15,12 +15,12 @@ router.post("/", userMiddleware, authMiddleware, async (req: Request, res: Respo
   const user = res.locals.user;
 
   try {
-    // 1️⃣ 게시물 찾기
+    //  게시물 찾기
     const post = await postRepo.findOneOrFail({
       where: { identifier, slug },
     });
 
-    // 2️⃣ 기존 좋아요 확인
+    //  기존 좋아요 확인
     const existingLike = await likeRepo.findOne({
       where: {
         username: user.username,
@@ -28,13 +28,13 @@ router.post("/", userMiddleware, authMiddleware, async (req: Request, res: Respo
       },
     });
 
-    // 3️⃣ 좋아요가 이미 있으면 제거
+    //  좋아요가 이미 있으면 제거
     if (existingLike) {
       await likeRepo.remove(existingLike);
       return res.json({ liked: false });
     }
 
-    // 4️⃣ 새 좋아요 생성
+    //  새 좋아요 생성
     const like = likeRepo.create({
       username: user.username,
       postId: post.id,
@@ -44,7 +44,7 @@ router.post("/", userMiddleware, authMiddleware, async (req: Request, res: Respo
     return res.json({ liked: true });
 
   } catch (e) {
-    console.error("🔥 LIKE ERROR:", e);
+    console.error(" LIKE ERROR:", e);
     return res.status(500).json({ error: "좋아요 처리 실패" });
   }
 });

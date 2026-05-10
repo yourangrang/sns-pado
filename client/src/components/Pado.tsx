@@ -18,8 +18,8 @@ const Pado = ({activeClass}:props) => {
 
   const fetch = async () => {
     try {
-      router.push('/');
       const res = await axios.get("/posts/random");
+      router.push('/');
       setPost(res.data);
       setIsOpen(true);
       console.log('post', res.data);
@@ -33,9 +33,8 @@ const Pado = ({activeClass}:props) => {
   return (
     <div>
       <button
-        className={`flex py-4 px-3 w-full items-center font-bold rounded-xl
-           ${!isOpen  && 'hover:bg-blue-300 hover:bg-opacity-10 hover:text-blue-600 hover:translate-x-1 transition-all ease'}
-          ${isOpen ? activeClass('modal') : ''}`}
+        className={`flex py-4 px-4 w-full items-center font-bold rounded-xl
+           ${isOpen ? activeClass('modal') : 'hover:bg-blue-300 hover:bg-opacity-10 hover:text-blue-600 hover:translate-x-1 transition-all ease'}`}
         onClick={fetch}
       >
         <GiBigWave  className="w-6 h-6 max-md:w-[20px] max-md:h-[20px]"/>
